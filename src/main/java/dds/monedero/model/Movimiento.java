@@ -28,7 +28,7 @@ public class Movimiento {
   }
 
   public boolean fueExtraido(LocalDate fecha) {
-    return isExtraccion() && esDeLaFecha(fecha);
+    return !isDeposito() && esDeLaFecha(fecha);
   }
 
   public boolean esDeLaFecha(LocalDate fecha) {
@@ -38,10 +38,9 @@ public class Movimiento {
   public boolean isDeposito() {
     return esDeposito;
   }
+  // hay codigo repetido con el metodo isExtraccion(), que retorna el mismo valor pero negado
+  // Refactor: eliminar el metodo isExtraccion() y usar !isDeposito() en los lugares que sea necesario
 
-  public boolean isExtraccion() {
-    return !esDeposito;
-  }
 
   public void agregateA(Cuenta cuenta) {
     cuenta.setSaldo(calcularValor(cuenta));
