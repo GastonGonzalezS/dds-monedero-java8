@@ -34,6 +34,8 @@ public class Cuenta {
 
     new Movimiento(LocalDate.now(), cuanto, true).agregateA(this);
   }
+  // Long method, se puede extraer los if en dos metodos, c/u encargado de la validacion correspondiente
+
 
   public void sacar(double cuanto) {
     if (cuanto <= 0) {
@@ -50,6 +52,7 @@ public class Cuenta {
     }
     new Movimiento(LocalDate.now(), cuanto, false).agregateA(this);
   }
+  //Long method, mismo caso que poner
 
   public void agregarMovimiento(LocalDate fecha, double cuanto, boolean esDeposito) {
     Movimiento movimiento = new Movimiento(fecha, cuanto, esDeposito);

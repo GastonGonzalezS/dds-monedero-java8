@@ -54,4 +54,9 @@ public class Movimiento {
       return cuenta.getSaldo() - getMonto();
     }
   }
+
+
+//Large class, ya que tiene la responsabilidad de depositos y extraccion
+// Refactor: convertir en clase abstracta movimiento y crear las subclases deposito y extraccion
+
 }

@@ -1,8 +1,6 @@
 package dds.monedero.model;
 
-import dds.monedero.exceptions.MaximaCantidadDepositosException;
-import dds.monedero.exceptions.MaximoExtraccionDiarioException;
-import dds.monedero.exceptions.SaldoMenorException;
+import dds.monedero.exceptions.SaldoException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +21,7 @@ public class MonederoTest {
 
   @Test
   void PonerMontoNegativo() {
-    assertThrows(MontoNegativoException.class, () -> cuenta.poner(-1500));
+    assertThrows(SaldoException.class, () -> cuenta.poner(-1500));
   }
 
   @Test
@@ -35,7 +33,7 @@ public class MonederoTest {
 
   @Test
   void MasDeTresDepositos() {
-    assertThrows(MaximaCantidadDepositosException.class, () -> {
+    assertThrows(SaldoException.class, () -> {
           cuenta.poner(1500);
           cuenta.poner(456);
           cuenta.poner(1900);
@@ -45,7 +43,7 @@ public class MonederoTest {
 
   @Test
   void ExtraerMasQueElSaldo() {
-    assertThrows(SaldoMenorException.class, () -> {
+    assertThrows(SaldoException.class, () -> {
           cuenta.setSaldo(90);
           cuenta.sacar(1001);
     });
@@ -53,7 +51,7 @@ public class MonederoTest {
 
   @Test
   public void ExtraerMasDe1000() {
-    assertThrows(MaximoExtraccionDiarioException.class, () -> {
+    assertThrows(SaldoException.class, () -> {
       cuenta.setSaldo(5000);
       cuenta.sacar(1001);
     });
@@ -61,7 +59,7 @@ public class MonederoTest {
 
   @Test
   public void ExtraerMontoNegativo() {
-    assertThrows(MontoNegativoException.class, () -> cuenta.sacar(-500));
+    assertThrows(SaldoException.class, () -> cuenta.sacar(-500));
   }
 
 }
